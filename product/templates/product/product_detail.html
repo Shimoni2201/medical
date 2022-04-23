@@ -1,0 +1,77 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% block extra_css %}
+
+{% endblock %}
+{% block title %}
+    product
+{% endblock %}
+{% block body %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12">
+
+
+                    <div class="card card-about-me">
+                        <div class="header">
+                            <h2>Product Details</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">library_books</i>
+                                        Name
+                                    </div>
+                                    <div class="content">
+                                        {{ object.name }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Model Number
+                                    </div>
+                                    <div class="content">
+                                        {{ object.model_no }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">edit</i>
+                                        Product Company Name
+                                    </div>
+                                    <div class="content">
+                                      {{ object.product_comp_name }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">notes</i>
+                                        Quantity
+                                    </div>
+                                    <div class="content">
+                                        {{ object.quantity }}
+                                    </div>
+                                    <div class="title">
+                                        <i class="material-icons">notes</i>
+                                        Image
+                                    </div>
+                                    <div class="media">
+                                        <img src="{{ object.pic1.url }}" class="product-image"  alt="Product Image">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+
+     <script src="{% static 'js/pages/examples/profile.js' %}"></script>
+{% endblock %}

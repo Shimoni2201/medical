@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <title>  {% block title %} Welcome To | Pharmacy {% endblock %}</title>
     <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -124,9 +124,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/typography.html">
+                        <a href="{% url 'product-new' %}">
                             <i class="material-icons">text_fields</i>
-                            <span>Typography</span>
+                            <span>Product</span>
                         </a>
                     </li>
                     <li>
@@ -561,7 +561,7 @@
         </aside>
         <!-- #END# Right Sidebar -->
     </section>
-{% block body %} {% endblock %}
+{% block body %}
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -873,6 +873,7 @@
             </div>
         </div>
     </section>
+    {% endblock %}
 
     <!-- Jquery Core Js -->
     <script src="{% static 'plugins/jquery/jquery.min.js'%}"></script>

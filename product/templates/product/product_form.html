@@ -1,0 +1,140 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{% static 'plugins/waitme/waitMe.css' %}" rel="stylesheet" />
+        <!-- Sweet Alert Css -->
+    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+    product
+{% endblock %}
+{% block body %}
+       <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    NEW PRODUCT
+
+                </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+
+                        <div class="body">
+                            <form id="quickForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                    <div class="col-md-4">
+                                <div class="form-group">
+
+                                        <label for="name">Name </label>
+                        {% crispy_field form.name  %}
+                      {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                                    </div>
+                                </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                        <label for="name">Model No. </label>
+                        {% crispy_field form.model_no  %}
+                      {% if form.model_no.errors %}
+                        {% for error in form.model_no.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                                    </div>
+                                </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                        <label for="name">Quantity </label>
+                        {% crispy_field form.quantity  %}
+                      {% if form.quantity.errors %}
+                        {% for error in form.quantity.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                        <label for="name">Product Company Name </label>
+                        {% crispy_field form.product_comp_name  %}
+                      {% if form.product_comp_name.errors %}
+                        {% for error in form.product_comp_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                                    </div>
+                                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                        <label for="name">Image </label>
+                        {% crispy_field form.pic1  %}
+                      {% if form.pic1.errors %}
+                        {% for error in form.pic1.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                                    </div>
+                                </div>
+
+
+                  </div>
+
+{#                                <button type="submit" class="btn btn-primary">Submit</button>#}
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static 'plugins/autosize/autosize.js' %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static 'plugins/momentjs/moment.js' %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+     <!-- Sweet Alert Plugin Js -->
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js'%}"></script>
+{% endblock %}
