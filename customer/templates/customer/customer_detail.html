@@ -1,0 +1,71 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% block extra_css %}
+
+{% endblock %}
+{% block title %}
+    customer
+{% endblock %}
+{% block body %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12">
+
+
+                    <div class="card card-about-me">
+                        <div class="header">
+                            <h2>Customer Details</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">library_books</i>
+                                        Name
+                                    </div>
+                                    <div class="content">
+                                        {{ object.first_name }} {{ object.last_name }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Company Name
+                                    </div>
+                                    <div class="content">
+                                        {{ object.company_name }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">edit</i>
+                                        GST no.
+                                    </div>
+                                    <div class="content">
+                                      {{ object.gst }}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">notes</i>
+                                        D.O.B
+                                    </div>
+                                    <div class="content">
+                                        {{ object.dob }}
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+
+     <script src="{% static 'js/pages/examples/profile.js' %}"></script>
+{% endblock %}

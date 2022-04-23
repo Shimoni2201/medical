@@ -1,0 +1,70 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{% static 'plugins/waitme/waitMe.css' %}" rel="stylesheet" />
+        <!-- Sweet Alert Css -->
+    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+    product
+{% endblock %}
+{% block body %}
+       <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    Are you sure you want to delete ?
+
+                </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+
+                        <div class="body">
+                            <form id="quickForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                           <ul>
+                  <li> Name : {{ object.first_name }} {{ object.last_name }}</li>
+                      <li>Company Name : {{ object.company_name }}</li>
+                  <li> GST no.:  {{ object.gst}}</li>
+                  <li> Contact: {{ object.phone }}</li>
+
+              </ul>
+
+{#                                <button type="submit" class="btn btn-primary">Submit</button>#}
+                                <button type="submit" class="btn btn-danger m-t-15 waves-effect">Delete</button>
+                                <a href="{% url 'customer-view' %}" class="btn btn-info m-t-15 waves-effect">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static 'plugins/autosize/autosize.js' %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static 'plugins/momentjs/moment.js' %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+     <!-- Sweet Alert Plugin Js -->
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js'%}"></script>
+{% endblock %}

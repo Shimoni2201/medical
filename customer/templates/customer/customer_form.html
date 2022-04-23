@@ -1,0 +1,233 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{% static 'plugins/waitme/waitMe.css' %}" rel="stylesheet" />
+        <!-- Sweet Alert Css -->
+    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+    customer
+{% endblock %}
+{% block body %}
+       <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    NEW CUSTOMER
+
+                </h2>
+            </div>
+            <div class="body">
+                <div class="card-inside-title">
+                            <form id="quickForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+{#            <h2 class="card-inside-title">Different Widths</h2>#}
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="name">GST No. </label>
+                    {% crispy_field form.gst  %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="name">Company Name </label>
+                    {% crispy_field form.company_name  %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="description">First Name </label>
+                      {% crispy_field form.first_name %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">Middle Name </label>
+                      {% crispy_field form.middle_name %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">Last Name </label>
+                      {% crispy_field form.last_name %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="name">Email ID </label>
+                            {% crispy_field form.email  %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="name">Phone </label>
+                        {% crispy_field form.phone  %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                             <label for="name">Gender </label>
+                        {% crispy_field form.gender  %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="contact_person_name">Document </label>
+                        {% crispy_field form.doc  %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">D.O.B </label>
+                          <div class="input-group date" id="bs_datepicker_component_container">
+                                        <div class="form-line">
+                                            {% crispy_field form.dob 'class' 'form-control'  'placeholder' 'Please choose a date...'%}
+                                        </div>
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">date_range</i>
+                                        </span>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">Residence No. </label>
+                        {% crispy_field form.flat_no %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="description">Street  </label>
+                        {% crispy_field form.st_name %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">Area </label>
+                        {% crispy_field form.area %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                 <div class="row clearfix">
+                                     <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="description">City </label>
+                        {% crispy_field form.city %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                             <label for="description">Pincode  </label>
+                                {% crispy_field form.pincode %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                           <label for="description"> State </label>
+                                {% crispy_field form.state %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="description">Country </label>
+                        {% crispy_field form.country %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label for="contact_person_name">Contact Person Name </label>
+                                    {% crispy_field form.contact_person_name  %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                          <label for="contact_person_phone">Contact Person - Moblie No. </label>
+                                {% crispy_field form.contact_person_phone  %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
+                            </form>
+            </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static 'plugins/autosize/autosize.js' %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static 'plugins/momentjs/moment.js' %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+     <!-- Sweet Alert Plugin Js -->
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js'%}"></script>
+{% endblock %}
