@@ -1,0 +1,111 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% block extra_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block title %}
+    employee
+{% endblock %}
+{% block body %}
+  <section class="content">
+        <div class="container-fluid">
+       <!-- Exportable Table -->
+ <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Employee List
+                            </h2>
+
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                      <th>Name</th>
+                      <th>Date of Joining</th>
+                      <th>Designation</th>
+                      <th>Salary</th>
+                      <th>Gender</th>
+                      <th>Phone</th>
+                      <th>Email </th>
+                      <th>Address</th>
+                      <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>ID</th>
+                      <th>Name</th>
+                      <th>Date of Joining</th>
+                      <th>Designation</th>
+                      <th>Salary</th>
+                      <th>Gender</th>
+                      <th>Phone</th>
+                      <th>Email </th>
+                      <th>Address</th>
+                      <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                         {% for e in employees %}
+                       <tr>
+                           <td> {{ e.id }}</td>
+                           <td>{{ e.first_name }} {{ e.last_name }}</td>
+                           <td>{{ e.doj }}</td>
+                           <td>{{ e.post }}</td>
+                           <td>{{ e.salary }}</td>
+                           <td>{{ e.gender }}</td>
+                           <td>{{ e.phone }}</td>
+                           <td>{{ e.email }}</td>
+                           <td>{{ e.flat_no }} {{ e.st_name }} <br> {{ e.area }} {{ e.city }} <br> {{ e.state }} {{ e.country }} <br> {{ e.pincode }}</td>
+                           <td><a class="btn btn-info btn-sm" href="{% url 'employee-update' e.id %}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Edit
+                              </a>
+                                <a class="btn btn-success btn-sm" href="{% url 'employee-detail' e.id %}">
+                                  <i class="fas fa-file-archive">
+                                  </i>
+                                  Detail
+                              </a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'employee-delete' e.id %}">
+                                     <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a>
+                           </td>
+
+                       </tr>
+                   {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+       </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+
+    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+{% endblock %}

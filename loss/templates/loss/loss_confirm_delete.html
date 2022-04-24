@@ -15,7 +15,7 @@
     <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block title %}
-    Customer
+   loss
 {% endblock %}
 {% block body %}
        <section class="content">
@@ -33,17 +33,18 @@
                         <div class="body">
                             <form id="quickForm" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                           <ul>
-                  <li> Name : {{ object.first_name }} {{ object.last_name }}</li>
-                      <li>Company Name : {{ object.company_name }}</li>
-                  <li> GST no.:  {{ object.gst}}</li>
-                  <li> Contact: {{ object.phone }}</li>
-
+                            <div class="card-body">
+                  <ul>
+                <li> Date : {{ object.date}}</li>
+                  <li> Product : {{ object.product.name }}</li>
+                  <li>Remarks : {{ object.remark | safe }}</li>
               </ul>
+
+                </div>
 
 {#                                <button type="submit" class="btn btn-primary">Submit</button>#}
                                 <button type="submit" class="btn btn-danger m-t-15 waves-effect">Delete</button>
-                                <a href="{% url 'customer-view' %}" class="btn btn-info m-t-15 waves-effect">Cancel</a>
+                                <a href="{% url 'loss-view' %}" class="btn btn-info m-t-15 waves-effect">Cancel</a>
                             </form>
                         </div>
                     </div>

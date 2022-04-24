@@ -1,0 +1,113 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% block extra_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block title %}
+    Purchase Bill
+{% endblock %}
+{% block body %}
+  <section class="content">
+        <div class="container-fluid">
+       <!-- Exportable Table -->
+ <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               Purchase Bill List
+                            </h2>
+
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                           <th>ID</th>
+                    <th>Date</th>
+                    <th>Supplier Name</th>
+                    <th>Total Amount</th>
+                    <th>Net Amount</th>
+                    <th>Due Amount</th>
+
+                    <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                    <th>Date</th>
+                    <th>Supplier Name</th>
+                    <th>Total Amount</th>
+                    <th>Net Amount</th>
+                    <th>Due Amount</th>
+
+                    <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                         {% for mat in bills %}
+                       <tr>
+                       <td> {{ mat.id }}</td>
+                       <td>{{ mat.date }}</td>
+                        <td>{{ mat.sup.first_name }} {{ mat.sup.last_name }}</td>
+                       <td>{{ mat.total}}</td>
+                           <td>{{ mat.net_amount }}</td>
+                       <td>{{ mat.due_amount }}</td>
+
+                       <td><a class="btn btn-info btn-xs" href="{% url 'update-purchase' mat.id %}" >
+
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                                <a class="btn btn-success btn-xs" href="{% url 'detail-purchase' mat.id %}">
+                                     <i class="fas fa-file-archive">
+                                     </i>
+                                    Detail
+                                </a>
+                       <a class="btn btn-danger btn-xs" href="{% url 'delete-purchase' mat.id %}" >
+                           <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a>
+
+                       <a class="btn btn-primary btn-xs" href="{% url 'print' mat.id %}" >
+
+                              <i class="fas fa-print">
+                              </i>
+                              Print
+                       </a></td>
+
+                       </tr>
+                   {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+       </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+
+    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+{% endblock %}

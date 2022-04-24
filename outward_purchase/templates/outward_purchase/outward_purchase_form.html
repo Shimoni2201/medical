@@ -1,0 +1,202 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{% static 'plugins/waitme/waitMe.css' %}" rel="stylesheet" />
+        <!-- Sweet Alert Css -->
+    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+    Sales Bill
+{% endblock %}
+{% block body %}
+       <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                   Sales Bill
+
+                </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+            <div class="body">
+
+                            <form id="quickForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+{#            <h2 class="card-inside-title">Different Widths</h2>#}
+                            <div class="row clearfix">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                            <label for="name">Bill Date </label>
+                            {% crispy_field form.date  %}
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                          <label for="name">Customer </label>
+                            {% crispy_field form.cus  %}
+
+                                    </div>
+                                </div>
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                         <button>  <a href="{% url 'prodoutward-new' %}" onclick="return !window.open(this.href, 'product update', 'width=700,height=600')"
+                                     target="_blank"> Add Product </a>
+                                             </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                            <label for="description">Total Amount  </label>
+                                    {% crispy_field form.total  'value' to %}
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                           <label for="description" id="discount_l">Discount </label>
+                            {% crispy_field form.discount %}
+
+                                    </div>
+                                </div>
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                           <label for="description" id="gst_l">CGST </label>
+                                {% crispy_field form.gst %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                             <label for="description" id="sgst_l">SGST </label>
+                                {% crispy_field form.sgst %}
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                             <label for="description">Net Amount </label>
+                        {% crispy_field form.net_amount 'value' to  %}
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                           <label for="description"> Due amount</label>
+                            {% crispy_field form.due_amount 'value' to  %}
+
+                                    </div>
+                                </div>
+
+                            </div>
+                                <div class="row clearfix">
+
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                    {% include "prodoutward/prodoutward_list.html" %}
+                        </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
+                            </form>
+
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static 'plugins/autosize/autosize.js' %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static 'plugins/momentjs/moment.js' %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+     <!-- Sweet Alert Plugin Js -->
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js'%}"></script>
+
+     <script>
+      document.addEventListener('DOMContentLoaded',function(){
+          document.querySelector("#id_total").value={{ to }};
+          document.querySelector("#id_net_amount").value={{ to }};
+          document.querySelector("#id_due_amount").value={{ to }};
+
+          document.querySelector("#id_gst").focusout=function(){
+
+              let gst=document.querySelector("#id_gst").value;
+              document.querySelector("#gst_l").innerHTML=` GST ${gst}%`;
+              let total_amount=parseFloat(document.querySelector("#id_total").value);
+              let r = parseFloat(document.querySelector("#id_gst").value=(gst*total_amount)/100);
+              let discount = parseFloat(document.querySelector("#id_discount").value);
+              let sgst = parseFloat(document.querySelector("#id_sgst").value);
+              document.querySelector("#id_net_amount").value= Math.round(total_amount+r+sgst-discount)
+              document.querySelector("#id_due_amount").value=Math.round(total_amount+r+sgst-discount)
+
+          }
+          document.querySelector("#id_sgst").focusout=function(){
+
+              let sgst=document.querySelector("#id_sgst").value;
+              document.querySelector("#sgst_l").innerHTML=` SGST ${sgst}%`;
+              let total_amount=parseFloat(document.querySelector("#id_total").value);
+              let r = parseFloat(document.querySelector("#id_sgst").value=(sgst*total_amount)/100);
+              let discount = parseFloat(document.querySelector("#id_discount").value);
+              let gst = parseFloat(document.querySelector("#id_gst").value);
+              document.querySelector("#id_net_amount").value= Math.round(total_amount+r+gst-discount)
+              document.querySelector("#id_due_amount").value=Math.round(total_amount+r+gst-discount)
+
+          }
+          // for inward purchase discount
+          document.querySelector("#id_discount").focusout=function(){
+
+              let discount=document.querySelector("#id_discount").value;
+              document.querySelector("#discount_l").innerHTML=` Discount ${discount}%`;
+              let total_amount=parseFloat(document.querySelector("#id_total").value);
+              let r = parseFloat(document.querySelector("#id_discount").value=(discount*total_amount)/100);
+              let gst = parseFloat(document.querySelector("#id_gst").value);
+              let sgst = parseFloat(document.querySelector("#id_sgst").value);
+              document.querySelector("#id_net_amount").value=Math.round(total_amount +sgst+gst- r)
+              document.querySelector("#id_due_amount").value=Math.round(total_amount+sgst+gst-r)
+          }
+      })
+    </script>
+{% endblock %}

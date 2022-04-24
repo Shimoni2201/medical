@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView, LoginView
 from django .conf import settings
 from django.conf.urls.static import static
+from users.views import dashboard,get_total_sales_by_month, loss_by_month
 
 urlpatterns = [
     path("",LoginView.as_view(template_name='users/login.html'),name="login"),
@@ -25,6 +26,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('product/', include('product.urls')),
-    path('customer/', include('customer.urls'))
+    path('customer/', include('customer.urls')),
+    path('supplier/', include('supplier.urls')),
+    path('employee/', include('employee.urls')),
+    path('prodinward/', include('prodinward.urls')),
+    path('inward_purchase/', include('inward_purchase.urls')),
+    path('prodoutward/', include('prodoutward.urls')),
+    path('outward_purchase/', include('outward_purchase.urls')),
+    path("loss/", include("loss.urls")),
+    path("dashboard/", dashboard, name="dashboard"),
+    path("total_sales_by_month/", get_total_sales_by_month, name="total_sale_by_month"),
+    path("loss_by_month/", loss_by_month, name="loss_by_month")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -15,46 +15,28 @@
     <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block title %}
-    customer
+    employee
 {% endblock %}
 {% block body %}
-       <section class="content">
+
+     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    NEW CUSTOMER
+                    NEW Employee
 
                 </h2>
             </div>
-
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-
-                        <div class="body">
+            <div class="body">
 
                             <form id="quickForm" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 {#            <h2 class="card-inside-title">Different Widths</h2>#}
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
 
-                                            <label for="name">GST No. </label>
-                    {% crispy_field form.gst  %}
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-
-                                           <label for="name">Company Name </label>
-                    {% crispy_field form.company_name  %}
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
+                            <div class="row clearfix">
                                 <div class="col-sm-4">
                                     <div class="form-group">
 
@@ -80,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row clearfix">
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
@@ -100,7 +82,51 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                             <label for="name">Gender </label>
+                                             <label for="name">Designation </label>
+                        {% crispy_field form.post  %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+
+                                            <label for="name">Salary </label>
+                        {% crispy_field form.salary  %}
+
+                                    </div>
+                                </div>
+
+                            </div>
+                                <div class="row clearfix">
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+
+                                           <label >D.O.J </label>
+                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                 {% crispy_field form.doj  %}
+                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div></div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+
+                                           <label>D.O.B:</label>
+                    <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                        {% crispy_field form.dob %}
+                        <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+
+                                    </div>
+                                </div>
+                                    <div class="col-sm-3">
+                                    <div class="form-group">
+<label for="name">Gender </label>
                         {% crispy_field form.gender  %}
 
                                     </div>
@@ -108,25 +134,21 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                           <label for="contact_person_name">Document </label>
+                                             <label for="contact_person_name">Document </label>
                         {% crispy_field form.doc  %}
 
                                     </div>
                                 </div>
+
                             </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
+
+                                 <div class="row clearfix">
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
 
-                                            <label for="description">D.O.B </label>
-                          <div class="input-group date" id="bs_datepicker_component_container">
-
-                                            {% crispy_field form.dob 'class' 'form-control'  'placeholder' 'Please choose a date...'%}
-
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">date_range</i>
-                                        </span>
-                                    </div>
+                                          <label for="contact_person_phone">Profile </label>
+                        {% crispy_field form.photo %}
 
                                     </div>
                                 </div>
@@ -138,27 +160,27 @@
 
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                      <div class="col-sm-3">
                                     <div class="form-group">
 
                                            <label for="description">Street  </label>
                         {% crispy_field form.st_name %}
+
 
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                            <label for="description">Area </label>
+                                          <label for="description">Area </label>
                         {% crispy_field form.area %}
 
                                     </div>
                                 </div>
 
                             </div>
-
-                                 <div class="row">
-                                     <div class="col-sm-3">
+                                  <div class="row clearfix">
+                                      <div class="col-sm-3">
                                     <div class="form-group">
 
                                            <label for="description">City </label>
@@ -169,7 +191,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                             <label for="description">Pincode  </label>
+                                           <label for="description">Pincode  </label>
                                 {% crispy_field form.pincode %}
 
                                     </div>
@@ -177,7 +199,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                           <label for="description"> State </label>
+                                             <label for="description"> State </label>
                                 {% crispy_field form.state %}
 
                                     </div>
@@ -185,45 +207,26 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                            <label for="description">Country </label>
+                                              <label for="description">Country </label>
                         {% crispy_field form.country %}
 
                                     </div>
                                 </div>
-
                             </div>
 
-                                <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
 
-                                            <label for="contact_person_name">Contact Person Name </label>
-                                    {% crispy_field form.contact_person_name  %}
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-
-                                          <label for="contact_person_phone">Contact Person - Moblie No. </label>
-                                {% crispy_field form.contact_person_phone  %}
-
-                                    </div>
-                                </div>
-                            </div>
 
 
                          <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
                             </form>
 
             </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
 {% endblock %}
 {% block extra_js %}
     <!-- Autosize Plugin Js -->

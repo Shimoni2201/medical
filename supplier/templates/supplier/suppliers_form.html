@@ -15,28 +15,26 @@
     <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block title %}
-    customer
+    supplier
 {% endblock %}
 {% block body %}
        <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    NEW CUSTOMER
+                    NEW Supplier
 
                 </h2>
             </div>
-
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-
-                        <div class="body">
+            <div class="body">
 
                             <form id="quickForm" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 {#            <h2 class="card-inside-title">Different Widths</h2>#}
-                            <div class="row">
+                            <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
@@ -54,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row clearfix">
                                 <div class="col-sm-4">
                                     <div class="form-group">
 
@@ -80,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row clearfix">
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
@@ -100,33 +98,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                             <label for="name">Gender </label>
-                        {% crispy_field form.gender  %}
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-
-                                           <label for="contact_person_name">Document </label>
-                        {% crispy_field form.doc  %}
-
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                    <div class="form-group">
-
-                                            <label for="description">D.O.B </label>
-                          <div class="input-group date" id="bs_datepicker_component_container">
-
-                                            {% crispy_field form.dob 'class' 'form-control'  'placeholder' 'Please choose a date...'%}
-
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">date_range</i>
-                                        </span>
-                                    </div>
+                                             <label for="name">Office No. </label>
+                        {% crispy_field form.office_no  %}
 
                                     </div>
                                 </div>
@@ -138,6 +111,11 @@
 
                                     </div>
                                 </div>
+
+                            </div>
+                                <div class="row clearfix">
+
+
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
@@ -154,11 +132,7 @@
 
                                     </div>
                                 </div>
-
-                            </div>
-
-                                 <div class="row">
-                                     <div class="col-sm-3">
+                                    <div class="col-sm-3">
                                     <div class="form-group">
 
                                            <label for="description">City </label>
@@ -174,6 +148,11 @@
 
                                     </div>
                                 </div>
+
+                            </div>
+
+                                 <div class="row clearfix">
+
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
@@ -190,11 +169,7 @@
 
                                     </div>
                                 </div>
-
-                            </div>
-
-                                <div class="row">
-                                <div class="col-sm-6">
+                                      <div class="col-sm-3">
                                     <div class="form-group">
 
                                             <label for="contact_person_name">Contact Person Name </label>
@@ -202,7 +177,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <div class="form-group">
 
                                           <label for="contact_person_phone">Contact Person - Moblie No. </label>
@@ -210,18 +185,19 @@
 
                                     </div>
                                 </div>
+
                             </div>
+
+
 
 
                          <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
                             </form>
 
             </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 {% endblock %}
