@@ -3,16 +3,7 @@
 {% load crispy_forms_field %}
 {% block extra_css %}
 
-    <!-- Bootstrap Material Datetime Picker Css -->
-    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
 
-    <!-- Bootstrap DatePicker Css -->
-    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
-
-    <!-- Wait Me Css -->
-    <link href="{% static 'plugins/waitme/waitMe.css' %}" rel="stylesheet" />
-        <!-- Sweet Alert Css -->
-    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block title %}
     customer
@@ -121,7 +112,7 @@
                                             <label for="description">D.O.B </label>
                           <div class="input-group date" id="bs_datepicker_component_container">
 
-                                            {% crispy_field form.dob 'class' 'form-control'  'placeholder' 'Please choose a date...'%}
+                                            {% crispy_field form.dob 'class' 'datepicker'  'placeholder' 'Please choose a date...'%}
 
                                         <span class="input-group-addon">
                                             <i class="material-icons">date_range</i>

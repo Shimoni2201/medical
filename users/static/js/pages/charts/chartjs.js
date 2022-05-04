@@ -7,23 +7,48 @@ $(function () {
 
 function getChartJs(type) {
     var config = null;
+        fetch("http://127.0.0.1:8000/total_sales_by_month/")
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
 
+ config = {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: "purchase",
+                    data: data.value,
+                    backgroundColor: 'rgba(0, 188, 212, 0.8)'
+                }, {
+                        label: "sales",
+                        data:data.value,
+                        backgroundColor: 'rgba(233, 30, 99, 0.8)'
+                    }]
+            },
+            options: {
+                responsive: true,
+                legend: false
+            }
+        }
+
+      } )
     if (type === 'line') {
         config = {
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: data.labels,
                 datasets: [{
-                    label: "My First dataset",
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    label: "purchase",
+                    data: data.value,
                     borderColor: 'rgba(0, 188, 212, 0.75)',
                     backgroundColor: 'rgba(0, 188, 212, 0.3)',
                     pointBorderColor: 'rgba(0, 188, 212, 0)',
                     pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
                     pointBorderWidth: 1
                 }, {
-                        label: "My Second dataset",
-                        data: [28, 48, 40, 19, 86, 27, 90],
+                        label: "sales",
+                        data: data.value,
                         borderColor: 'rgba(233, 30, 99, 0.75)',
                         backgroundColor: 'rgba(233, 30, 99, 0.3)',
                         pointBorderColor: 'rgba(233, 30, 99, 0)',
@@ -38,17 +63,22 @@ function getChartJs(type) {
         }
     }
     else if (type === 'bar') {
-        config = {
+         fetch("http://127.0.0.1:8000/total_sales_by_month/")
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+
+ config = {
             type: 'bar',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: data.labels,
                 datasets: [{
-                    label: "My First dataset",
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    label: "purchase",
+                    data: data.value,
                     backgroundColor: 'rgba(0, 188, 212, 0.8)'
                 }, {
-                        label: "My Second dataset",
-                        data: [28, 48, 40, 19, 86, 27, 90],
+                        label: "sales",
+                        data:data.value,
                         backgroundColor: 'rgba(233, 30, 99, 0.8)'
                     }]
             },
@@ -57,61 +87,10 @@ function getChartJs(type) {
                 legend: false
             }
         }
+
+      } )
+
     }
-    else if (type === 'radar') {
-        config = {
-            type: 'radar',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                    label: "My First dataset",
-                    data: [65, 25, 90, 81, 56, 55, 40],
-                    borderColor: 'rgba(0, 188, 212, 0.8)',
-                    backgroundColor: 'rgba(0, 188, 212, 0.5)',
-                    pointBorderColor: 'rgba(0, 188, 212, 0)',
-                    pointBackgroundColor: 'rgba(0, 188, 212, 0.8)',
-                    pointBorderWidth: 1
-                }, {
-                        label: "My Second dataset",
-                        data: [72, 48, 40, 19, 96, 27, 100],
-                        borderColor: 'rgba(233, 30, 99, 0.8)',
-                        backgroundColor: 'rgba(233, 30, 99, 0.5)',
-                        pointBorderColor: 'rgba(233, 30, 99, 0)',
-                        pointBackgroundColor: 'rgba(233, 30, 99, 0.8)',
-                        pointBorderWidth: 1
-                    }]
-            },
-            options: {
-                responsive: true,
-                legend: false
-            }
-        }
-    }
-    else if (type === 'pie') {
-        config = {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    data: [225, 50, 100, 40],
-                    backgroundColor: [
-                        "rgb(233, 30, 99)",
-                        "rgb(255, 193, 7)",
-                        "rgb(0, 188, 212)",
-                        "rgb(139, 195, 74)"
-                    ],
-                }],
-                labels: [
-                    "Pink",
-                    "Amber",
-                    "Cyan",
-                    "Light Green"
-                ]
-            },
-            options: {
-                responsive: true,
-                legend: false
-            }
-        }
-    }
+
     return config;
 }

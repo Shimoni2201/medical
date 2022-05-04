@@ -3,7 +3,11 @@
 {% block extra_css %}
     <!-- JQuery DataTable Css -->
     <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
-
+<link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/searchbuilder/1.1.0/css/searchBuilder.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/datetime/1.1.0/css/dataTables.dateTime.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block title %}
     product
@@ -23,7 +27,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table id="example">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -32,7 +36,7 @@
                                              <th>Product Comapny Name</th>
                                             <th>Quantity</th>
                                             <th>Image</th>
-
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -43,6 +47,7 @@
                                             <th>Product Comapny Name</th>
                                             <th>Quantity</th>
                                             <th>Image</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -92,16 +97,62 @@
 {% endblock %}
 
 {% block extra_js %}
-    <!-- Jquery DataTable Plugin Js -->
-    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/searchbuilder/1.1.0/js/dataTables.searchBuilder.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 
-    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+
+
+    <script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'QBfrtip',
+        colReorder: true,
+        "order": [],
+        buttons: [
+            'colvis',
+            'copy',
+
+
+            {
+                extend: 'excel',
+                messageTop: 'Indian Oil',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                messageTop: 'INDIAN OIL',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+               {
+                extend: 'print',
+                messageTop: "<center><h1>Indian Oil</h1><br><h4>Sandhvi Petrol Pump-Jaroda Samlaya Road</h4></center><img src='{% static 'IndianOilLogo100x100 (1).jpg' %}' ></img>' ",
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }
+
+        ]
+
+    } );
+} );
+    </script>
+
+
+
+    <!-- Custom Js -->
+    <script src="{% static 'js/admin.js' %}"></script>
 {% endblock %}

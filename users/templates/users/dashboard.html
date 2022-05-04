@@ -87,6 +87,7 @@
 
                         </div>
                         <div class="body">
+                            <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
                             <canvas id="bar_chart" height="150"></canvas>
                         </div>
                     </div>
@@ -102,4 +103,65 @@
 {% block extra_js %}
        <!-- Chart Plugins Js -->
     <script src="{% static 'js/pages/charts/chartjs.js' %}"></script>
+    <script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+      // for admission chart
+    fetch("http://127.0.0.1:8000/total_sales_by_month/")
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          var areaChartData = {
+      //labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : data.label,
+      datasets: [
+        {
+          label               : 'Total Selling',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : data.values
+        }
+      ]
+    }
+
+              //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#bar_chart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    barChartData.datasets[0] = temp0
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false,
+        scales: {
+        yAxes: [{
+            display: true,
+            ticks: {
+               // suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                // OR //
+                beginAtZero: true   // minimum value will be 0.
+            }
+        }]
+    }
+    }
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+      } )
+
+  })
+</script>
 {% endblock %}
