@@ -32,7 +32,7 @@
                       <th>Rate</th>
                       <th>Quantity</th>
                     <th>Price</th>
-                      <th>Remarks</th>
+
                     <th>Action</th>
 
                                         </tr>
@@ -45,7 +45,7 @@
                       <th>Rate</th>
                       <th>Quantity</th>
                     <th>Price</th>
-                      <th>Remarks</th>
+
                     <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -58,7 +58,7 @@
                            <td>{{ cate.rate }}</td>
                            <td>{{ cate.quantity }}</td>
                         <td>{{ cate.price }}</td>
-                           <td>{{ cate.remark | safe}}</td>
+
                        <td><a class="btn btn-info btn-sm" href="{% url 'loss-update' cate.id %}">
                               <i class="fas fa-pencil-alt">
                               </i>

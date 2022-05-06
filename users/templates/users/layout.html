@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <title>  {% block title %} Welcome To | Pharmacy {% endblock %}</title>
-    <!-- Favicon-->
-<!-- Bootstrap Material Datetime Picker Css -->
-    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css'%}" rel="stylesheet" />
+    <title>{% block title %} Welcome To | Pharmacy {% endblock %}</title>
+      <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css'%}" rel="stylesheet" />
 
     <!-- Bootstrap DatePicker Css -->
     <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css'%}" rel="stylesheet" />
@@ -42,7 +38,7 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static 'css/themes/all-themes.css'%}" rel="stylesheet" />
-    {% block extra_css %} {% endblock %}
+ {% block extra_css %} {% endblock %}
 </head>
 
 <body class="theme-red">
@@ -87,23 +83,19 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Call Search -->
 
-                    <!-- #END# Call Search -->
                     <!-- Notifications -->
+                <!-- Notifications -->
                     <li>
                         <a href="{% url 'logout' %}" role="button">
                             <i class="fa-sign-out">Logout</i>
 
                         </a>
                     </li>
-                    <!-- #END# Notifications -->
-                    <!-- Tasks -->
 
-                    <!-- #END# Tasks -->
-                    <li class="pull-right">
-                        <a href="javascript:void(0);" class="js-right-sidebar" ><i class="material-icons">more_vert</i></a>
-                    </li>
+                    <!-- #END# Notifications -->
+
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
         </div>
@@ -128,7 +120,7 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
+                    <li>
                         <a href="{% url 'dashboard' %}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
@@ -154,9 +146,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+
+                      <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">swap_calls</i>
+                            <i class="material-icons">insert_emoticon</i>
                             <span>Customers</span>
                         </a>
                         <ul class="ml-menu">
@@ -175,7 +168,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
+                            <i class="material-icons">person</i>
                             <span>Employees</span>
                         </a>
                         <ul class="ml-menu">
@@ -194,7 +187,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">business</i>
                             <span>Suppliers</span>
                         </a>
                         <ul class="ml-menu">
@@ -271,6 +264,28 @@
                     </li>
 
 
+
+
+
+                    <li class="header">LABELS</li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons col-red">donut_large</i>
+                            <span>Important</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons col-amber">donut_large</i>
+                            <span>Warning</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons col-light-blue">donut_large</i>
+                            <span>Information</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
@@ -382,9 +397,17 @@
     </section>
 {% block body %}
 
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>BLANK PAGE</h2>
+            </div>
+        </div>
+    </section>
     {% endblock %}
 
-    <!-- Jquery Core Js -->
+     <!-- Jquery Core Js -->
     <script src="{% static 'plugins/jquery/jquery.min.js'%}"></script>
 
     <!-- Bootstrap Core Js -->
@@ -453,21 +476,21 @@
 
             {
                 extend: 'excel',
-                messageTop: 'Indian Oil',
+                messageTop: 'ESWASTHYA',
                 exportOptions: {
                     columns: ':visible'
                 }
             },
             {
                 extend: 'pdfHtml5',
-                messageTop: 'INDIAN OIL',
+                messageTop: 'ESWASTHYA',
                 exportOptions: {
                     columns: ':visible'
                 }
             },
                {
                 extend: 'print',
-                messageTop: "<center><h1>Indian Oil</h1><br><h4>Sandhvi Petrol Pump-Jaroda Samlaya Road</h4></center><img src='{% static 'IndianOilLogo100x100 (1).jpg' %}' ></img>' ",
+                messageTop: "<center><h1>ESWASTHYA</h1><br><h4>YSL AVENUE AMBAVADI</h4></center><img src='{% static 'images/download.jpg' %}' ></img>' ",
                 exportOptions: {
                     columns: ':visible'
                 }
